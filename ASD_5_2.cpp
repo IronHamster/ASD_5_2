@@ -1,12 +1,11 @@
 #include <iostream>
 #include <vector>
-using namespace std;
 
-void scal(vector<vector<double>>& dane, int lewy, int srodek, int prawy, int kolumnaSort) {
+void scal(std::vector<std::vector<double>>& dane, int lewy, int srodek, int prawy, int kolumnaSort) {
     int n1 = srodek - lewy + 1;
     int n2 = prawy - srodek;
 
-    vector<vector<double>> L(n1), P(n2);
+    std::vector<std::vector<double>> L(n1), P(n2);
 
     for (int i = 0; i < n1; i++) {
         L[i] = dane[lewy + i];
@@ -41,7 +40,7 @@ void scal(vector<vector<double>>& dane, int lewy, int srodek, int prawy, int kol
     }
 }
 
-void mergeSort(vector<vector<double>>& dane, int lewy, int prawy, int kolumnaSort) {
+void mergeSort(std::vector<std::vector<double>>& dane, int lewy, int prawy, int kolumnaSort) {
     if (lewy >= prawy) return;
 
     int srodek = lewy + (prawy - lewy) / 2;
@@ -50,20 +49,20 @@ void mergeSort(vector<vector<double>>& dane, int lewy, int prawy, int kolumnaSor
     scal(dane, lewy, srodek, prawy, kolumnaSort);
 }
 
-void wczytajDane(vector<vector<double>>& dane, vector<int>& listaKolumn, int& n) {
+void wczytajDane(std::vector<std::vector<double>>& dane, std::vector<int>& listaKolumn, int& n) {
     int m;
-    cin >> n >> m;
+    std::cin >> n >> m;
     listaKolumn.resize(m);
 
     for (int i = 0; i < m; i++) {
-        cin >> listaKolumn[i];
+        std::cin >> listaKolumn[i];
         listaKolumn[i] -= 1;
     }
 
-    vector<double> wiersz(n);
-    while (cin) {
+    std::vector<double> wiersz(n);
+    while (std::cin) {
         for (int i = 0; i < n; i++) {
-            if (!(cin >> wiersz[i])) {
+            if (!(std::cin >> wiersz[i])) {
                 return;
             }
         }
@@ -71,24 +70,24 @@ void wczytajDane(vector<vector<double>>& dane, vector<int>& listaKolumn, int& n)
     }
 }
 
-void wypiszWynik(const vector<vector<double>>& dane) {
+void wypiszWynik(const std::vector<std::vector<double>>& dane) {
     for (int i = 0; i < dane.size(); i++) {
         for (int j = 0; j < dane[i].size(); j++) {
             double liczba = dane[i][j];
             if (liczba == static_cast<int>(liczba)) {
-                cout << static_cast<int>(liczba) << " ";
+                std::cout << static_cast<int>(liczba) << " ";
             } else {
-                cout << liczba << " ";
+                std::cout << liczba << " ";
             }
         }
-        cout << endl;
+        std::cout << std::endl;
     }
 }
 
 int main() {
     int n;
-    vector<vector<double>> dane;
-    vector<int> listaKolumn;
+    std::vector<std::vector<double>> dane;
+    std::vector<int> listaKolumn;
 
     wczytajDane(dane, listaKolumn, n);
 
